@@ -1,0 +1,10 @@
+
+
+sf_pixlr_post:
+  url:   /pixlr_post
+  param: { module: sfPixlr, action: post}
+
+sf_pixlr_save:
+  url:   /pixlr_save/:options
+  param: { module: sfPixlr, action: save}
+  
