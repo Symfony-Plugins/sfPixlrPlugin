@@ -1,0 +1,88 @@
+sfPixlrPlugin plugin
+====================
+
+The `sfPixlrPlugin` is a symfony plugin that provides support for Pixlr
+image editing service API to symfony applications.
+
+It gives you helpers that generate URL-s for sending images to Pixlr service,
+and utility module that can automatically save your edited images.
+
+For informations about Pixlr service please visit [Pixlr website](http://www.pixlr.com/)
+
+Installation
+------------
+
+  * Install the plugin
+
+        $ symfony plugin:install sfPixlrPlugin
+
+  * Enable module sfPixlr in your `settings.yml`
+
+        [php]
+        all:
+          .settings:
+            enabled_modules:      [default, sfPixlr]
+
+  * Secure module sfPixlr if necessary.
+
+  * Clear you cache
+
+        $ symfony cc
+
+Usage
+-----
+
+Sending images to the Pixlr services can be done in two ways: via a GET
+or a POST request. This plugin provides helpers for each of this methods.
+
+### `pixlr_get_url` helper ###
+
+To send image via GET request use `pixlr_get_url` helper:
+
+        pixlr_get_url($absolute_url, $target, $options=array())
+
+Example:
+    
+        pixlr_get_url("http://example.com/images/my%26image.jpg", url_for("mymodule/done", true), array("save_to"=>"images/saved"))
+
+Parameters:
+
+  * `$absolute_url`: Absolute URL to original image. This URL must be accessible over internet so Pixlr can download it.
+  * `$target`: Absolute URL to action where request will be redirected after image is saved.
+  * `$options`: Array containing helper options
+
+### `pixlr_post_url` helper ###
+
+To send image via POST request use `pixlr_post_url` helper:
+
+        pixlr_post_url($file, $target, $options=array())
+
+Example:
+    
+        pixlr_post_url("/var/www/web/uploads/images/my&image.jpg", url_for("mymodule/done", true), array("save_to"=>"images/saved"))
+
+Parameters:
+
+  * `$file`: Path to image on server. This file will be sent via POST method from sfPixlr module.
+  * `$target`: Absolute URL to action where request will be redirected after image is saved.
+  * `$options`: Array containing helper options
+
+### Helper options ###
+
+  * `save_to`: path to folder on server to which file will be saved.
+      * this parameter is appended to `app_pixlr_upload_dir` or `sf_upload_dir`
+      * if TRUE, default symfony upload folder is used
+      * if FALSE or not specified file will not be automatically saved
+  * `title`: default name for new file (default: original file name)
+  * `referrer`: displayed in save dialog (default: HTTP_HOST)
+  * `exit`: where to send the visitor when he/she clicks on the File->Exit
+  * `loc`: pixlr localization (default: en)
+  * `skip_default`: By default, image is sent from Pixlr to `sfPixlr/save` action,
+      and then forwarded from there to `$target`. If you set `skip_default` to `true`
+      Image will be sent directly to `$target`.
+  * `target_vars`: Should Pixlr return informations be appended to `$target` URL as
+      GET variables or not. Default is `true`.
+      
+      
+      
+      
