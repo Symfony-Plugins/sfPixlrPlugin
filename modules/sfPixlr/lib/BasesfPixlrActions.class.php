@@ -11,11 +11,6 @@
 abstract class BasesfPixlrActions extends sfActions
 {
 
-  const PIXLR_HOST = "www.pixlr.com";
-  const PIXLR_URL = "http://www.pixlr.com/";
-  const PIXLR_UPLOAD_URL = "http://www.pixlr.com/editor/";
-    
-
   public function executeSave(sfWebRequest $request)
   {
   	$options = base64_decode($request->getParameter("options"));
@@ -29,13 +24,13 @@ abstract class BasesfPixlrActions extends sfActions
     $state = $request->getParameter("state");
     $url = $request->getParameter("image");
     $extension = $request->getParameter("type");
-
+   
     if($state!="fetched")
     {
       throw new sfException("Unknown pixlr state: {$state}");
     }
  
-    if(substr($url, 0, strlen(sfPixlrActions::PIXLR_URL))!=sfPixlrActions::PIXLR_URL)
+    if(substr($url, 0, strlen(sfPixlrTools::PIXLR_URL))!=sfPixlrTools::PIXLR_URL)
     {
       throw new sfException("Unrecognized url: {$url}");
     }
@@ -84,10 +79,14 @@ abstract class BasesfPixlrActions extends sfActions
     $pixlr_vars['exit'] = $request->getParameter('exit', sfContext::getInstance()->getRequest()->getReferer());
     $pixlr_vars['loc'] = $request->getParameter('loc', 'en');
     $pixlr_vars['target'] = urldecode($request->getParameter('target'));
+    
+    $options = array();
+    
+    $options['app'] = sfPixlrTools::getPixlrApp($request->getParameter('app', null));
   
-    $post = $this->buildRequest($file, $pixlr_vars);
+    $post = $this->buildRequest($file, $pixlr_vars, $options);
 
-    $f = fsockopen(sfPixlrActions::PIXLR_HOST, 80);
+    $f = fsockopen(sfPixlrTools::PIXLR_HOST, 80);
     fputs($f, $post);
     $response = "";
     while (!feof($f))
@@ -106,7 +105,7 @@ abstract class BasesfPixlrActions extends sfActions
 
   }
 
-  private function buildRequest($file, $pixlr_vars)
+  private function buildRequest($file, $pixlr_vars, $options)
   {
   	
   	$file_data = file_get_contents($file);
@@ -116,8 +115,8 @@ abstract class BasesfPixlrActions extends sfActions
     $boundary = "---------------------------".md5(uniqid());
       
     // Build the header
-    $header = "POST ".sfPixlrActions::PIXLR_UPLOAD_URL." HTTP/1.0\r\n";
-    $header .= "Host: ".sfPixlrActions::PIXLR_HOST."\r\n";
+    $header = "POST ".sfPixlrTools::getPixlrAppUrl($options['app'])." HTTP/1.0\r\n";
+    $header .= "Host: ".sfPixlrTools::PIXLR_HOST."\r\n";
     $header .= "Content-Type: multipart/form-data; boundary=$boundary\r\n";
     
     $data = "";
