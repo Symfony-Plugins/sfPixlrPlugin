@@ -27,7 +27,7 @@ class sfPixlrTools
     }
     else
     {
-      return sfConfig::get('app_pixlr_default_app', 'editor');;
+      return sfConfig::get('app_pixlr_default_app');
     }
   }
   

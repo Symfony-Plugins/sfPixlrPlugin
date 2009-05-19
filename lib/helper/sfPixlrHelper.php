@@ -37,7 +37,6 @@ function pixlr_get_url($absolute_url, $target, $options=array())
   }
 
   return sfPixlrTools::getPixlrAppUrl(isset($options['app'])?$options['app']:null)."?".http_build_query($pixlr_vars);
- 
 }
 
 

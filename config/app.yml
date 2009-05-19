@@ -1,0 +1,6 @@
+
+all:
+  pixlr:
+    default_app: editor
+#    upload_dir: 
+#    upload_permissions: 0777
