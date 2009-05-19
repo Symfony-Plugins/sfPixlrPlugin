@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Returns a routed URL to pixlr.com image editor.
- * Image URL is sent by GET method to http://www.pixlr.com/editor/
+ * Returns a routed URL to pixlr.com default application.
+ * Image URL is sent by GET method to http://www.pixlr.com/
  * Options:
  *  - save_to: path to folder on server to which file will be saved.
  *    * this parameter is appended to app_pixlr_upload_dir or sf_upload_dir
@@ -41,7 +41,7 @@ function pixlr_get_url($absolute_url, $target, $options=array())
 
 
 /**
- * Returns a routed URL to pixlr.com image editor.
+ * Returns a routed URL to pixlr.com default application.
  * Image is sent by POST method via sfPixlr/post action.
  * Options:
  *  - save_to: path to folder on server to which file will be saved.
@@ -79,17 +79,10 @@ function pixlr_post_url($file, $target, $options=array())
 
 
 /**
- * Returns a routed URL to pixlr.com image editor.
- * Image URL is sent by GET method to http://www.pixlr.com/editor/
- * Options:
- *  - save_to: path to folder on server to which file will be saved.
- *    * this parameter is appended to app_pixlr_upload_dir or sf_upload_dir
- *    * if TRUE, default symfony upload folder is used
- *    * if FALSE or not specified file will not be automatically saved
- *  - title: default name for new file (default: original file name)
- *  - referrer: displayed in save dialog (default: HTTP_HOST)
- *  - exit: where to send the visitor when he/she clicks on the File->Exit
- *  - loc: pixlr localization (default: en)
+ * Returns a routed URL to pixlr.com editor application.
+ * Image URL is sent by GET method to http://www.pixlr.com/
+ * 
+ * @see function pixlr_get_url
  *
  * @param string $absolute_url  absolute url to image, must be accessible over internet
  * @param string $target        url that will browser be redirected to on save
@@ -103,17 +96,10 @@ function pixlr_editor_get_url($absolute_url, $target, $options=array())
 
 
 /**
- * Returns a routed URL to pixlr.com image editor.
+ * Returns a routed URL to pixlr.com editor application.
  * Image is sent by POST method via sfPixlr/post action.
- * Options:
- *  - save_to: path to folder on server to which file will be saved.
- *    * this parameter is appended to app_pixlr_upload_dir or sf_upload_dir
- *    * if TRUE, default symfony upload folder is used
- *    * if FALSE or not specified file will not be automatically saved
- *  - title: default name for new file (default: original file name)
- *  - referrer: displayed in save dialog (default: HTTP_HOST)
- *  - exit: where to send the visitor when he/she clicks on the File->Exit
- *  - loc: pixlr localization (default: en)
+ * 
+ * @see function pixlr_post_url
  *
  * @param string $file         path to file on server
  * @param string $target       url that will browser be redirected to on save
@@ -128,17 +114,10 @@ function pixlr_editor_post_url($file, $target, $options=array())
 
 
 /**
- * Returns a routed URL to pixlr.com image editor.
- * Image URL is sent by GET method to http://www.pixlr.com/editor/
- * Options:
- *  - save_to: path to folder on server to which file will be saved.
- *    * this parameter is appended to app_pixlr_upload_dir or sf_upload_dir
- *    * if TRUE, default symfony upload folder is used
- *    * if FALSE or not specified file will not be automatically saved
- *  - title: default name for new file (default: original file name)
- *  - referrer: displayed in save dialog (default: HTTP_HOST)
- *  - exit: where to send the visitor when he/she clicks on the File->Exit
- *  - loc: pixlr localization (default: en)
+ * Returns a routed URL to pixlr.com express application.
+ * Image URL is sent by GET method to http://www.pixlr.com/
+ * 
+ * @see function pixlr_get_url
  *
  * @param string $absolute_url  absolute url to image, must be accessible over internet
  * @param string $target        url that will browser be redirected to on save
@@ -152,17 +131,10 @@ function pixlr_express_get_url($absolute_url, $target, $options=array())
 
 
 /**
- * Returns a routed URL to pixlr.com image editor.
+ * Returns a routed URL to pixlr.com express application.
  * Image is sent by POST method via sfPixlr/post action.
- * Options:
- *  - save_to: path to folder on server to which file will be saved.
- *    * this parameter is appended to app_pixlr_upload_dir or sf_upload_dir
- *    * if TRUE, default symfony upload folder is used
- *    * if FALSE or not specified file will not be automatically saved
- *  - title: default name for new file (default: original file name)
- *  - referrer: displayed in save dialog (default: HTTP_HOST)
- *  - exit: where to send the visitor when he/she clicks on the File->Exit
- *  - loc: pixlr localization (default: en)
+ * 
+ * @see function pixlr_post_url
  *
  * @param string $file         path to file on server
  * @param string $target       url that will browser be redirected to on save
@@ -173,5 +145,3 @@ function pixlr_express_post_url($file, $target, $options=array())
 {
   return pixlr_post_url($file, $target, array_merge($options, array("app"=>"express")));
 }
-
-

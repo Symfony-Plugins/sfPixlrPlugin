@@ -10,10 +10,10 @@
     <email>draganhr@gmail.com</email>
     <active>yes</active>
   </lead>
-  <date>2009-05-02</date>
+  <date>2009-05-19</date>
   <version>
-    <release>0.1.0</release>
-    <api>0.1.0</api>
+    <release>0.1.1</release>
+    <api>0.1.1</api>
   </version>
   <stability>
     <release>alpha</release>
@@ -22,7 +22,17 @@
   <license uri="http://www.symfony-project.org/license">MIT license</license>
   <notes>-</notes>
   <contents>
-    <dir name="/"><dir name="config"><file name="routing.yml" role="data"/><file name="sfPixlrPluginConfiguration.class.php" role="data"/></dir><dir name="lib"><dir name="helper"><file name="sfPixlrHelper.php" role="data"/></dir></dir><file name="LICENSE" role="data"/><dir name="modules"><dir name="sfPixlr"><dir name="actions"><file name="actions.class.php" role="data"/></dir><dir name="lib"><file name="BasesfPixlrActions.class.php" role="data"/></dir></dir></dir><file name="README" role="data"/></dir>
+   <dir name="/">
+    <file name="config/app.yml" role="data" />
+    <file name="config/sfPixlrPluginConfiguration.class.php" role="data" />
+    <file name="config/routing.yml" role="data" />
+    <file name="modules/sfPixlr/actions/actions.class.php" role="data" />
+    <file name="modules/sfPixlr/lib/BasesfPixlrActions.class.php" role="data" />
+    <file name="lib/helper/sfPixlrHelper.php" role="data" />
+    <file name="lib/sfPixlrTools.class.php" role="data" />
+    <file name="README" role="data" />
+    <file name="LICENSE" role="data" />
+   </dir>
   </contents>
   <dependencies>
     <required>
@@ -43,6 +53,24 @@
   </dependencies>
   <phprelease></phprelease>
 <changelog>
+  <release>
+    <version>
+      <release>0.1.1</release>
+      <api>0.1.1</api>
+    </version>
+    <stability>
+     <release>alpha</release>
+     <api>alpha</api>
+    </stability>
+    <license uri="http://www.symfony-project.org/license">MIT license</license>
+    <date>2009-05-19</date>
+    <license>MIT</license>
+    <notes>
+      * support for express application
+      * readme file
+      * various bugfixes and refactoring
+    </notes>
+  </release>
   <release>
     <version>
       <release>0.1.0</release>
